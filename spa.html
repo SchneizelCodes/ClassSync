@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Class Sync · Centralized Scheduling SPA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&display=swap");
+      :root {
+        --brand: #1f3b8f;
+        --brand-2: #2f66e7;
+        --accent: #0ea5a4;
+      }
+      body {
+        font-family: "Sora", system-ui, sans-serif;
+      }
+      .glass {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(12px);
+      }
+      .nav-active {
+        background: #e7efff;
+        color: #1f3b8f;
+        border-color: #b9cdfa;
+      }
+      .view {
+        transition: opacity 0.2s ease;
+      }
+      .view.hidden {
+        opacity: 0;
+      }
+    </style>
+  </head>
+  <body class="bg-slate-100 text-slate-800">
+    <div id="toast" class="fixed top-4 right-4 z-50 hidden"></div>
+    <div class="min-h-screen flex flex-col">
+      <header class="glass border-b border-slate-200">
+        <div class="mx-auto max-w-7xl px-6 py-4 flex items-center justify-between">
+          <div class="flex items-center gap-3 font-bold text-lg">
+            <span class="w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center">S</span>
+            <span>Class Sync</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="text-sm text-slate-500">Admin • Central Office</span>
+            <span class="w-9 h-9 rounded-full bg-slate-200 flex items-center justify-center">A</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="flex-1">
+        <div class="mx-auto max-w-7xl px-6 py-6 grid gap-6 lg:grid-cols-[240px_1fr]">
+          <aside class="glass rounded-2xl border border-slate-200 p-4 flex flex-col gap-4">
+            <div>
+              <p class="text-xs uppercase tracking-wide text-slate-500">Navigation</p>
+              <div class="mt-3 flex flex-col gap-2">
+                <button class="nav-btn nav-active border rounded-xl px-3 py-2 text-left font-semibold" data-view="dashboard">
+                  Dashboard Overview
+                </button>
+                <button class="nav-btn border rounded-xl px-3 py-2 text-left font-semibold" data-view="instructors">
+                  Instructor Profiles
+                </button>
+                <button class="nav-btn border rounded-xl px-3 py-2 text-left font-semibold" data-view="scheduling">
+                  Scheduling Interface
+                </button>
+                <button class="nav-btn border rounded-xl px-3 py-2 text-left font-semibold" data-view="attendance">
+                  Attendance Logger
+                </button>
+
+              </div>
+            </div>
+            <div class="mt-auto p-3 rounded-xl bg-slate-900 text-white">
+              <p class="text-xs uppercase tracking-wide text-slate-300">Centralized Database</p>
+              <p class="mt-2 text-sm">Status: Online</p>
+              <p class="text-xs text-slate-300">Synced 3 minutes ago</p>
+            </div>
+          </aside>
+
+          <main class="flex flex-col gap-6">
+            <section class="view" data-view="dashboard" id="view-dashboard">
+              <div class="grid gap-6">
+                <div class="rounded-2xl bg-white p-6 shadow-sm border border-slate-200">
+                  <h1 class="text-2xl font-bold">Dashboard Overview</h1>
+                  <p class="text-slate-500 mt-1">Active class sessions and room allocations in real-time.</p>
+                </div>
+
+                <div class="grid gap-4 md:grid-cols-3">
+                  <div class="rounded-2xl bg-white p-5 border border-slate-200">
+                    <p class="text-sm text-slate-500">Active Sessions</p>
+                    <p class="text-3xl font-bold mt-2">14</p>
+                    <p class="text-xs text-emerald-600 mt-2">+3 since last hour</p>
+                  </div>
+                  <div class="rounded-2xl bg-white p-5 border border-slate-200">
+                    <p class="text-sm text-slate-500">Rooms Allocated</p>
+                    <p class="text-3xl font-bold mt-2">28</p>
+                    <p class="text-xs text-slate-400 mt-2">Main campus & annex</p>
+                  </div>
+                  <div class="rounded-2xl bg-white p-5 border border-slate-200">
+                    <p class="text-sm text-slate-500">Conflicts Flagged</p>
+                    <p class="text-3xl font-bold mt-2">2</p>
+                    <p class="text-xs text-rose-500 mt-2">Needs review</p>
+                  </div>
+                </div>
+
+                <div class="grid gap-4 lg:grid-cols-2">
+                  <div class="rounded-2xl bg-white p-5 border border-slate-200">
+                    <div class="flex items-center justify-between">
+                      <h2 class="font-semibold">Active Sessions</h2>
+                      <span class="text-xs text-slate-500">Today • 08:00 - 18:00</span>
+                    </div>
+                    <ul class="mt-4 space-y-3 text-sm">
+                      <li class="flex items-center justify-between">
+                        <span>IPT101 · Room IK604 · 08:00-10:00</span>
+                        <span class="text-emerald-600 font-semibold">Live</span>
+                      </li>
+                      <li class="flex items-center justify-between">
+                        <span>IM101 · Room IL703 · 10:00-12:00</span>
+                        <span class="text-emerald-600 font-semibold">Live</span>
+                      </li>
+                      <li class="flex items-center justify-between">
+                        <span>NET202 · Room IT402 · 13:00-15:00</span>
+                        <span class="text-amber-500 font-semibold">Upcoming</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="rounded-2xl bg-white p-5 border border-slate-200">
+                    <div class="flex items-center justify-between">
+                      <h2 class="font-semibold">Room Allocation</h2>
+                      <span class="text-xs text-slate-500">Live occupancy</span>
+                    </div>
+                    <div class="mt-4 grid gap-3 text-sm">
+                      <div class="flex items-center justify-between">
+                        <span>Engineering Wing</span>
+                        <span class="font-semibold">11 / 12</span>
+                      </div>
+                      <div class="flex items-center justify-between">
+                        <span>ICT Labs</span>
+                        <span class="font-semibold">9 / 10</span>
+                      </div>
+                      <div class="flex items-center justify-between">
+                        <span>Annex Rooms</span>
+                        <span class="font-semibold">8 / 10</span>
+                      </div>
+                    </div>
+                    <button class="mt-4 w-full rounded-xl bg-slate-900 text-white py-2 text-sm font-semibold" data-action="view-allocation">
+                      View allocation board
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="view hidden" data-view="instructors" id="view-instructors">
+              <div class="grid gap-6">
+                <div class="rounded-2xl bg-white p-6 border border-slate-200">
+                  <h1 class="text-2xl font-bold">Instructor Profile Management</h1>
+                  <p class="text-slate-500 mt-1">Maintain instructor profiles and teaching loads.</p>
+                </div>
+                <div class="rounded-2xl bg-white p-6 border border-slate-200">
+                  <div class="grid gap-4 md:grid-cols-3">
+                    <input id="inst-name" class="rounded-xl border border-slate-200 px-3 py-2" placeholder="Instructor Name" />
+                    <input id="inst-dept" class="rounded-xl border border-slate-200 px-3 py-2" placeholder="Department" />
+                    <input id="inst-email" class="rounded-xl border border-slate-200 px-3 py-2" placeholder="Email" />
+                  </div>
+                  <div class="mt-4 flex flex-wrap gap-3">
+                    <button class="rounded-xl bg-slate-900 text-white px-4 py-2 text-sm font-semibold" data-action="add-instructor">Add Instructor</button>
+                    <button class="rounded-xl border border-slate-200 px-4 py-2 text-sm font-semibold" data-action="update-instructor">Update Profile</button>
+                    <button class="rounded-xl border border-slate-200 px-4 py-2 text-sm font-semibold text-rose-500" data-action="remove-instructor">Remove</button>
+                  </div>
+                </div>
+                <div class="rounded-2xl bg-white p-6 border border-slate-200">
+                  <div class="flex items-center justify-between">
+                    <h2 class="font-semibold">Instructor Load List</h2>
+                    <input class="rounded-xl border border-slate-200 px-3 py-2 text-sm" placeholder="Search instructor..." />
+                  </div>
+                  <div class="mt-4 overflow-x-auto">
+                    <table class="w-full text-sm">
+                      <thead class="text-left text-slate-500">
+                        <tr>
+                          <th class="py-2">Name</th>
+                          <th>Department</th>
+                          <th>Load</th>
+                          <th>Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class="border-t">
+                          <td class="py-3 font-semibold">Richard Vienna Dela Cruz</td>
+                          <td>College of Engineering</td>
+                          <td>18 Units</td>
+                          <td><span class="rounded-full bg-emerald-100 text-emerald-600 px-2 py-1 text-xs">Full-time</span></td>
+                        </tr>
+                        <tr class="border-t">
+                          <td class="py-3 font-semibold">Benjamin Molinar</td>
+                          <td>College of Computer Studies</td>
+                          <td>12 Units</td>
+                          <td><span class="rounded-full bg-amber-100 text-amber-700 px-2 py-1 text-xs">Part-time</span></td>
+                        </tr>
+                        <tr class="border-t">
+                          <td class="py-3 font-semibold">Faye Cruz</td>
+                          <td>College of Education</td>
+                          <td>15 Units</td>
+                          <td><span class="rounded-full bg-slate-100 text-slate-600 px-2 py-1 text-xs">Contractual</span></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="view hidden" data-view="scheduling" id="view-scheduling">
+              <div class="grid gap-6">
+                <div class="rounded-2xl bg-white p-6 border border-slate-200">
+                  <h1 class="text-2xl font-bold">Scheduling Interface</h1>
+                  <p class="text-slate-500 mt-1">Visualize class schedules by day, time, and room.</p>
+                </div>
+                <div class="rounded-2xl bg-white p-6 border border-slate-200">
+                  <div class="flex items-center justify-between flex-wrap gap-2">
+                    <h2 class="font-semibold">Weekly Grid</h2>
+                    <div class="flex gap-2">
+                      <button class="rounded-xl bg-slate-900 text-white px-3 py-2 text-sm font-semibold" data-action="add-class">Add Class</button>
+                      <button class="rounded-xl border border-slate-200 px-3 py-2 text-sm font-semibold" data-action="resolve-conflicts">Resolve Conflicts</button>
+                    </div>
+                  </div>
+                  <div class="mt-4 overflow-x-auto">
+                    <table class="w-full text-sm border-separate border-spacing-0">
+                      <thead class="bg-slate-50 text-slate-500">
+                        <tr>
+                          <th class="p-2 text-left">Time</th>
+                          <th class="p-2 text-left">Mon</th>
+                          <th class="p-2 text-left">Tue</th>
+                          <th class="p-2 text-left">Wed</th>
+                          <th class="p-2 text-left">Thu</th>
+                          <th class="p-2 text-left">Fri</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class="border-t">
+                          <td class="p-2 font-semibold">08:00</td>
+                          <td class="p-2">IPT101 · IK604</td>
+                          <td class="p-2">IM101 · IL703</td>
+                          <td class="p-2">NET202 · IT402</td>
+                          <td class="p-2">PHY201 · PE104</td>
+                          <td class="p-2">ENG103 · ER302</td>
+                        </tr>
+                        <tr class="border-t">
+                          <td class="p-2 font-semibold">10:00</td>
+                          <td class="p-2">CS105 · IT502</td>
+                          <td class="p-2">LAB110 · IT205</td>
+                          <td class="p-2">MATH120 · MR210</td>
+                          <td class="p-2">HIST204 · HR110</td>
+                          <td class="p-2">NET302 · IT409</td>
+                        </tr>
+                        <tr class="border-t">
+                          <td class="p-2 font-semibold">13:00</td>
+                          <td class="p-2">EDU105 · ER115</td>
+                          <td class="p-2">SCI201 · SR201</td>
+                          <td class="p-2">IM201 · IL701</td>
+                          <td class="p-2">SYS210 · IT405</td>
+                          <td class="p-2">MATH222 · MR309</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="view hidden" data-view="attendance" id="view-attendance">
+              <div class="grid gap-6">
+                <div class="rounded-2xl bg-white p-6 border border-slate-200">
+                  <h1 class="text-2xl font-bold">Attendance Logger</h1>
+                  <p class="text-slate-500 mt-1">Record attendance for an active class session.</p>
+                </div>
+                <div class="rounded-2xl bg-white p-6 border border-slate-200">
+                  <div class="grid gap-4 md:grid-cols-3">
+                    <select id="att-session" class="rounded-xl border border-slate-200 px-3 py-2">
+                      <option>IPT101 · Room IK604</option>
+                      <option>IM101 · Room IL703</option>
+                      <option>NET202 · Room IT402</option>
+                    </select>
+                    <input id="att-date" class="rounded-xl border border-slate-200 px-3 py-2" type="date" />
+                    <input id="att-instructor" class="rounded-xl border border-slate-200 px-3 py-2" placeholder="Instructor" value="Mr. Dela Cruz" />
+                  </div>
+                  <div class="mt-4 overflow-x-auto">
+                    <table class="w-full text-sm">
+                      <thead class="text-left text-slate-500">
+                        <tr>
+                          <th class="py-2">Student</th>
+                          <th>ID</th>
+                          <th>Status</th>
+                        </tr>
+                      </thead>
+                      <tbody data-toggle-group>
+                        <tr class="border-t">
+                          <td class="py-3 font-semibold">Arielle Santos</td>
+                          <td>20240102</td>
+                          <td class="space-x-2">
+                            <button class="toggle-btn rounded-full bg-emerald-100 text-emerald-600 px-3 py-1 text-xs">Present</button>
+                            <button class="toggle-btn rounded-full bg-slate-100 text-slate-600 px-3 py-1 text-xs">Absent</button>
+                            <button class="toggle-btn rounded-full bg-amber-100 text-amber-600 px-3 py-1 text-xs">Late</button>
+                          </td>
+                        </tr>
+                        <tr class="border-t">
+                          <td class="py-3 font-semibold">Miguel Tan</td>
+                          <td>20240119</td>
+                          <td class="space-x-2">
+                            <button class="toggle-btn rounded-full bg-emerald-100 text-emerald-600 px-3 py-1 text-xs">Present</button>
+                            <button class="toggle-btn rounded-full bg-slate-100 text-slate-600 px-3 py-1 text-xs">Absent</button>
+                            <button class="toggle-btn rounded-full bg-amber-100 text-amber-600 px-3 py-1 text-xs">Late</button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="mt-4 flex justify-end gap-3">
+                    <button class="rounded-xl border border-slate-200 px-4 py-2 text-sm font-semibold" data-action="save-attendance">Save Draft</button>
+                    <button class="rounded-xl bg-slate-900 text-white px-4 py-2 text-sm font-semibold" data-action="submit-attendance">Submit Attendance</button>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="view hidden" data-view="reports" id="view-reports">
+              <div class="grid gap-6">
+                <div class="rounded-2xl bg-white p-6 border border-slate-200">
+                  <h1 class="text-2xl font-bold">Report Section</h1>
+                  <p class="text-slate-500 mt-1">Generate and review schedules and attendance history.</p>
+                </div>
+                <div class="grid gap-4 md:grid-cols-2">
+                  <div class="rounded-2xl bg-white p-5 border border-slate-200">
+                    <h2 class="font-semibold">Schedule Summary</h2>
+                    <p class="text-sm text-slate-500 mt-2">48 classes scheduled this week.</p>
+                    <button class="mt-4 rounded-xl bg-slate-900 text-white px-4 py-2 text-sm font-semibold" data-action="generate-pdf">Generate PDF</button>
+                  </div>
+                  <div class="rounded-2xl bg-white p-5 border border-slate-200">
+                    <h2 class="font-semibold">Attendance Summary</h2>
+                    <p class="text-sm text-slate-500 mt-2">92% average attendance across departments.</p>
+                    <button class="mt-4 rounded-xl border border-slate-200 px-4 py-2 text-sm font-semibold" data-action="view-history">View history</button>
+                  </div>
+                </div>
+                <div class="rounded-2xl bg-white p-6 border border-slate-200">
+                  <div class="flex items-center justify-between">
+                    <h2 class="font-semibold">Recent Reports</h2>
+                    <button class="rounded-xl border border-slate-200 px-3 py-2 text-sm font-semibold" data-action="export-reports">Export</button>
+                  </div>
+                  <ul class="mt-4 space-y-3 text-sm">
+                    <li class="flex items-center justify-between border-b pb-3">
+                      <span>Weekly Attendance Summary</span>
+                      <span class="text-slate-500">March 8, 2026</span>
+                    </li>
+                    <li class="flex items-center justify-between border-b pb-3">
+                      <span>Room Allocation Utilization</span>
+                      <span class="text-slate-500">March 7, 2026</span>
+                    </li>
+                    <li class="flex items-center justify-between">
+                      <span>Instructor Load Overview</span>
+                      <span class="text-slate-500">March 5, 2026</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script src="spa.js"></script>
+    <div id="modal" class="fixed inset-0 bg-slate-900/60 hidden items-center justify-center z-50">
+      <div class="bg-white rounded-2xl p-6 max-w-md w-full shadow-lg">
+        <h3 id="modal-title" class="text-lg font-bold">Action</h3>
+        <p id="modal-body" class="text-sm text-slate-500 mt-2">Details go here.</p>
+        <div class="mt-5 flex justify-end gap-2">
+          <button id="modal-cancel" class="rounded-xl border border-slate-200 px-4 py-2 text-sm font-semibold">Close</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

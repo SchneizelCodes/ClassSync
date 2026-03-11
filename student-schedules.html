@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Class Sync - Student Schedules</title>
+    <link rel="stylesheet" href="student.css" />
+  </head>
+  <body class="student-app" data-page="schedules">
+    <div class="student-topbar">
+      <div class="brand-mini">
+        <span class="brand-mark">S</span>
+        <span class="brand-text">Class Sync</span>
+      </div>
+      <div class="top-user">
+        <span>Juan Dizon</span>
+        <span class="avatar-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="8" r="4"></circle>
+            <path d="M4 21c1.8-3.8 5-6 8-6s6.2 2.2 8 6" fill="none" stroke="currentColor" stroke-width="2"></path>
+          </svg>
+        </span>
+      </div>
+    </div>
+
+    <div class="student-layout">
+      <aside class="student-sidebar">
+        <div class="sidebar-head">
+          <div class="brand-stack">
+            <span class="brand-mark">S</span>
+            <span class="brand-text">Class Sync</span>
+          </div>
+          <span class="student-name">Juan Dizon</span>
+        </div>
+        <nav class="student-nav">
+          <a class="nav-item" href="student-dashboard.html" data-target="dashboard">
+            <span class="nav-icon box"></span>
+            Dashboard
+          </a>
+          <a class="nav-item" href="student-schedules.html" data-target="schedules">
+            <span class="nav-icon circle"></span>
+            Schedules
+          </a>
+          <a class="nav-item" href="student-attendance.html" data-target="attendance">
+            <span class="nav-icon ring"></span>
+            Attendance
+          </a>
+          <a class="nav-item" href="student-reports.html" data-target="reports">
+            <span class="nav-icon clip"></span>
+            Reports
+          </a>
+        </nav>
+        <div class="sidebar-foot">
+          <button class="text-btn" data-action="logout">Log out</button>
+          <button class="icon-btn" aria-label="Settings" data-action="settings">Settings</button>
+        </div>
+      </aside>
+
+      <main class="student-main">
+        <section class="student-header">
+          <h1>My Schedule</h1>
+          <p>View your assigned class schedules.</p>
+        </section>
+
+        <section class="student-surface">
+          <div class="toolbar">
+            <div class="search">
+              <span class="search-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"></circle>
+                  <path d="M20 20l-4-4" fill="none" stroke="currentColor" stroke-width="2"></path>
+                </svg>
+              </span>
+              <input type="text" placeholder="Search your schedule..." />
+            </div>
+            <button class="filter-btn" data-action="filter-schedule">Filter</button>
+          </div>
+
+          <div class="action-row">
+            <button class="action-btn primary" data-action="record-attendance">Record Attendance</button>
+            <button class="action-btn dark" data-action="view-history">View History</button>
+          </div>
+
+          <div class="panel-block">
+            <div class="panel-title">Schedule Information</div>
+            <div class="table">
+              <div class="table-head">
+                <span>Subject</span>
+                <span>Section</span>
+                <span>Room</span>
+                <span>Day</span>
+                <span>Time</span>
+                <span>Status</span>
+              </div>
+              <div class="table-row">
+                <span>Intro to Programming</span>
+                <span>BSIT 1-A</span>
+                <span>Room 201</span>
+                <span>Mon / Wed / Fri</span>
+                <span>07:30 - 09:00 AM</span>
+                <span class="status-pill green">Today</span>
+              </div>
+              <div class="table-row">
+                <span>Data Structures & Algo</span>
+                <span>BSIT 2-B</span>
+                <span>Room 305</span>
+                <span>Mon / Wed</span>
+                <span>01:00 - 02:30 PM</span>
+                <span class="status-pill green">Today</span>
+              </div>
+              <div class="table-row">
+                <span>Web Development</span>
+                <span>BSIT 3-A</span>
+                <span>Lab 102</span>
+                <span>Tue / Thu</span>
+                <span>10:00 - 11:30 AM</span>
+                <span class="status-pill gray">Not Today</span>
+              </div>
+              <div class="table-row">
+                <span>Database Management</span>
+                <span>BSIT 2-A</span>
+                <span>Room 210</span>
+                <span>Friday</span>
+                <span>03:00 - 05:00 PM</span>
+                <span class="status-pill gray">Not Today</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="legend">
+            <span><span class="dot green"></span>Scheduled Today</span>
+            <span><span class="dot yellow"></span>Upcoming Today</span>
+            <span><span class="dot gray"></span>Not Scheduled Today</span>
+            <span><span class="dot red"></span>Cancelled</span>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="student.js"></script>
+  </body>
+</html>

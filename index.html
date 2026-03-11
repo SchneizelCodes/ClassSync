@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Class Sync - Landing</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="landing">
+
+    <section class="welcome-banner">
+      <h1>Welcome to Class Sync!</h1>
+      <p>Today is February 28, 2027</p>
+    </section>
+
+    <main class="landing-main">
+      <div class="logo-hero">
+        <div class="logo-decor">
+          <span class="triangle tri-top"></span>
+          <span class="triangle tri-bottom"></span>
+        </div>
+        <div class="logo-shape">
+          <svg viewBox="0 0 220 220" aria-hidden="true">
+            <defs>
+              <linearGradient id="sGrad" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0" stop-color="#1f3a88" />
+                <stop offset="1" stop-color="#3c5fb8" />
+              </linearGradient>
+            </defs>
+            <path
+              d="M120 26c-36 0-66 22-66 50 0 15 10 28 25 34-18 7-30 21-30 38 0 28 30 50 66 50 30 0 55-16 63-38"
+              fill="none"
+              stroke="url(#sGrad)"
+              stroke-width="28"
+              stroke-linecap="round"
+            />
+            <circle cx="176" cy="70" r="18" fill="#1a2a3f" opacity="0.85" />
+            <circle cx="44" cy="150" r="16" fill="#1a2a3f" opacity="0.6" />
+          </svg>
+        </div>
+        <div class="logo-type">
+          <span>Class</span>
+          <span>Sync</span>
+        </div>
+      </div>
+
+      <form class="login-card">
+        <label>
+          <span>Email</span>
+          <input type="email" placeholder="Enter email" />
+        </label>
+        <label>
+          <span>Password</span>
+          <input type="password" placeholder="Enter password" />
+        </label>
+        <button type="button" class="primary-btn"> <a href="dashboard.html" style="text-decoration: none;">Sign In</a></button>
+        <button type="button" class="link-btn">Forgot password</button>
+      </form>
+    </main>
+  </body>
+</html>

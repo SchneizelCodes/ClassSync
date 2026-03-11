@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Class Sync - Student Dashboard</title>
+    <link rel="stylesheet" href="student.css" />
+  </head>
+  <body class="student-app" data-page="dashboard">
+    <div class="student-topbar">
+      <div class="brand-mini">
+        <span class="brand-mark">S</span>
+        <span class="brand-text">Class Sync</span>
+      </div>
+      <div class="top-user">
+        <span>Juan Dizon</span>
+        <span class="avatar-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="8" r="4"></circle>
+            <path d="M4 21c1.8-3.8 5-6 8-6s6.2 2.2 8 6" fill="none" stroke="currentColor" stroke-width="2"></path>
+          </svg>
+        </span>
+      </div>
+    </div>
+
+    <div class="student-layout">
+      <aside class="student-sidebar">
+        <div class="sidebar-head">
+          <div class="brand-stack">
+            <span class="brand-mark">S</span>
+            <span class="brand-text">Class Sync</span>
+          </div>
+          <span class="student-name">Juan Dizon</span>
+        </div>
+        <nav class="student-nav">
+          <a class="nav-item" href="student-dashboard.html" data-target="dashboard">
+            <span class="nav-icon box"></span>
+            Dashboard
+          </a>
+          <a class="nav-item" href="student-schedules.html" data-target="schedules">
+            <span class="nav-icon circle"></span>
+            Schedules
+          </a>
+          <a class="nav-item" href="student-attendance.html" data-target="attendance">
+            <span class="nav-icon ring"></span>
+            Attendance
+          </a>
+          <a class="nav-item" href="student-reports.html" data-target="reports">
+            <span class="nav-icon clip"></span>
+            Reports
+          </a>
+        </nav>
+        <div class="sidebar-foot">
+          <button class="text-btn" data-action="logout">Log out</button>
+          <button class="icon-btn" aria-label="Settings" data-action="settings">Settings</button>
+        </div>
+      </aside>
+
+      <main class="student-main">
+        <section class="student-header">
+          <h1>Dashboard</h1>
+          <p>Welcome back, Juan Dizon.</p>
+        </section>
+
+        <section class="student-surface">
+          <div class="summary-grid">
+            <div class="summary-card">
+              <span>Total Subjects</span>
+              <strong>04</strong>
+              <small>This Semester</small>
+            </div>
+            <div class="summary-card">
+              <span>Classes Today</span>
+              <strong>02</strong>
+              <small>Scheduled</small>
+            </div>
+            <div class="summary-card">
+              <span>Attendance Rate</span>
+              <strong>92%</strong>
+              <small>This month</small>
+            </div>
+            <div class="summary-card">
+              <span>Total Students</span>
+              <strong>148</strong>
+              <small>All sections</small>
+            </div>
+          </div>
+
+          <div class="panel-block">
+            <div class="panel-title">Today's Classes - March 5, 2026</div>
+            <div class="table">
+              <div class="table-head">
+                <span>Subject</span>
+                <span>Section</span>
+                <span>Room</span>
+                <span>Time</span>
+                <span>Status</span>
+                <span></span>
+              </div>
+              <div class="table-row">
+                <span>Intro to Programming</span>
+                <span>BSIT 1-A</span>
+                <span>Room 201</span>
+                <span>07:30 - 09:00 AM</span>
+                <span class="status-pill green">Ongoing</span>
+                <button class="mini-btn" data-action="record-attendance">Record</button>
+              </div>
+              <div class="table-row">
+                <span>Data Structures & Algo</span>
+                <span>BSIT 2-B</span>
+                <span>Room 305</span>
+                <span>01:00 - 02:30 PM</span>
+                <span class="status-pill yellow">Upcoming</span>
+                <button class="mini-btn" data-action="record-attendance">Record</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="legend">
+            <span><span class="dot green"></span>Ongoing</span>
+            <span><span class="dot yellow"></span>Upcoming</span>
+            <span><span class="dot gray"></span>Completed</span>
+            <span><span class="dot red"></span>Missed</span>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="student.js"></script>
+  </body>
+</html>

@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Class Sync · Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="app" data-page="dashboard">
+    <div class="topbar">
+      <div class="brand-mini">
+        <span class="brand-mark">S</span>
+        <span class="brand-text">Class Sync</span>
+      </div>
+      <div class="admin-pill">
+        <span>Admin Name</span>
+        <span class="avatar-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="8" r="4"></circle>
+            <path d="M4 21c1.8-3.8 5-6 8-6s6.2 2.2 8 6" fill="none" stroke="currentColor" stroke-width="2"></path>
+          </svg>
+        </span>
+      </div>
+    </div>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="sidebar-head">
+          <div class="brand-stack">
+            <span class="brand-mark">S</span>
+            <span class="brand-text">Class Sync</span>
+          </div>
+          <span class="admin-name">Admin Name</span>
+        </div>
+        <nav class="nav">
+          <a class="nav-item" href="dashboard.html" data-target="dashboard">
+            <span class="nav-icon">▦</span>
+            Dashboard
+          </a>
+          <a class="nav-item" href="instructors.html" data-target="instructors">
+            <span class="nav-icon">👥</span>
+            Instructors
+          </a>
+          <a class="nav-item" href="schedules.html" data-target="schedules">
+            <span class="nav-icon">⏰</span>
+            Schedules
+          </a>
+          <a class="nav-item" href="#" data-target="attendance">
+            <span class="nav-icon">📅</span>
+            Attendance
+          </a>
+          <a class="nav-item" href="#" data-target="reports">
+            <span class="nav-icon">📊</span>
+            Reports
+          </a>
+        </nav>
+        <div class="sidebar-foot">
+          <button class="text-btn">Log out</button>
+          <button class="icon-btn" aria-label="Settings">⚙</button>
+        </div>
+      </aside>
+
+      <main class="content">
+        <section class="hero-card">
+          <div>
+            <h1>Welcome back, Admin.</h1>
+            <p>Today is February 28, 2027</p>
+          </div>
+        </section>
+
+        <section class="stats">
+          <div class="stat-card">
+            <span>Total Instructors</span>
+            <strong>00</strong>
+          </div>
+          <div class="stat-card">
+            <span>Active Schedules</span>
+            <strong>00</strong>
+          </div>
+          <div class="stat-card">
+            <span>Present Today</span>
+            <strong>00</strong>
+          </div>
+          <div class="stat-card">
+            <span>Absent Today</span>
+            <strong>00</strong>
+          </div>
+        </section>
+
+        <section class="grid-two">
+          <div class="panel">
+            <div class="panel-head">
+              <h3>Attendance Overview</h3>
+            </div>
+            <div class="panel-body">
+              <div class="pie-wrap">
+                <div class="pie-chart">
+                  <div class="pie-labels">
+                    <span class="label absent">Absent</span>
+                    <span class="label late">Late</span>
+                    <span class="label present">Present</span>
+                  </div>
+                </div>
+              </div>
+              <div class="panel-foot">
+                <span>Total Instructors:</span>
+                <strong>00</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-head split">
+              <h3>Todays Scheduled Classes</h3>
+              <span class="tag">Saturday | February 28, 2027</span>
+            </div>
+            <div class="panel-body">
+              <div class="table">
+                <div class="table-head">
+                  <span>Time</span>
+                  <span>Subject</span>
+                  <span>Room No.</span>
+                  <span>Subject Instructor</span>
+                </div>
+                <div class="table-row">
+                  <span>8:00 AM<br />1:00 PM</span>
+                  <span>IPT101<br />IM101</span>
+                  <span>IK604<br />IL703</span>
+                  <span>Mr. Dela Cruz<br />Mr. Molinar</span>
+                </div>
+              </div>
+              <div class="panel-foot">
+                <span>Total Scheduled Classes:</span>
+                <strong>2</strong>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="grid-two">
+          <div class="panel">
+            <div class="panel-head">
+              <h3>Attendance Logs</h3>
+            </div>
+            <div class="panel-body">
+              <div class="table">
+                <div class="table-head">
+                  <span>Instructor</span>
+                  <span>Subject</span>
+                  <span>Time In</span>
+                  <span>Status</span>
+                  <span>Time out</span>
+                </div>
+                <div class="table-row">
+                  <span>Mr. Dela Cruz<br />Mr. Molinar</span>
+                  <span>IPT101<br />IM101</span>
+                  <span>8:25 AM<br />12:45 PM</span>
+                  <span class="status">
+                    <span class="dot late"></span>Late<br />
+                    <span class="dot present"></span>Present
+                  </span>
+                  <span>5:25 PM<br />9:00 PM</span>
+                </div>
+              </div>
+              <div class="panel-foot">
+                <span>Present Instructors:</span>
+                <strong>2</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel action-panel">
+            <button class="action-btn blue">+ New Instructor</button>
+            <button class="action-btn green">+ Create Schedule</button>
+            <button class="action-btn red">- Remove Instructor</button>
+            <button class="action-btn yellow">- Delete Schedule</button>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

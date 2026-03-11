@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Class Sync - Student Reports</title>
+    <link rel="stylesheet" href="student.css" />
+  </head>
+  <body class="student-app" data-page="reports">
+    <div class="student-topbar">
+      <div class="brand-mini">
+        <span class="brand-mark">S</span>
+        <span class="brand-text">Class Sync</span>
+      </div>
+      <div class="top-user">
+        <span>Juan Dizon</span>
+        <span class="avatar-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="8" r="4"></circle>
+            <path d="M4 21c1.8-3.8 5-6 8-6s6.2 2.2 8 6" fill="none" stroke="currentColor" stroke-width="2"></path>
+          </svg>
+        </span>
+      </div>
+    </div>
+
+    <div class="student-layout">
+      <aside class="student-sidebar">
+        <div class="sidebar-head">
+          <div class="brand-stack">
+            <span class="brand-mark">S</span>
+            <span class="brand-text">Class Sync</span>
+          </div>
+          <span class="student-name">Juan Dizon</span>
+        </div>
+        <nav class="student-nav">
+          <a class="nav-item" href="student-dashboard.html" data-target="dashboard">
+            <span class="nav-icon box"></span>
+            Dashboard
+          </a>
+          <a class="nav-item" href="student-schedules.html" data-target="schedules">
+            <span class="nav-icon circle"></span>
+            Schedules
+          </a>
+          <a class="nav-item" href="student-attendance.html" data-target="attendance">
+            <span class="nav-icon ring"></span>
+            Attendance
+          </a>
+          <a class="nav-item" href="student-reports.html" data-target="reports">
+            <span class="nav-icon clip"></span>
+            Reports
+          </a>
+        </nav>
+        <div class="sidebar-foot">
+          <button class="text-btn" data-action="logout">Log out</button>
+          <button class="icon-btn" aria-label="Settings" data-action="settings">Settings</button>
+        </div>
+      </aside>
+
+      <main class="student-main">
+        <section class="student-header">
+          <h1>Reports</h1>
+          <p>View and search past attendance records.</p>
+        </section>
+
+        <section class="student-surface">
+          <div class="toolbar">
+            <div class="search">
+              <span class="search-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"></circle>
+                  <path d="M20 20l-4-4" fill="none" stroke="currentColor" stroke-width="2"></path>
+                </svg>
+              </span>
+              <input type="text" placeholder="Search your schedule..." />
+            </div>
+            <button class="filter-btn" data-action="filter-reports">Filter</button>
+          </div>
+
+          <div class="chip-row">
+            <button class="chip" data-action="chip-toggle">All Subjects</button>
+            <button class="chip" data-action="chip-toggle">All Months</button>
+            <button class="chip" data-action="chip-toggle">All Sections</button>
+          </div>
+
+          <div class="panel-block">
+            <div class="panel-title">Schedule Information</div>
+            <div class="table cols-9">
+              <div class="table-head">
+                <span>Date</span>
+                <span>Subject</span>
+                <span>Section</span>
+                <span>Time In</span>
+                <span>Status</span>
+                <span>Present</span>
+                <span>Absent</span>
+                <span>Late</span>
+                <span></span>
+              </div>
+              <div class="table-row">
+                <span>Mar 5, 2025</span>
+                <span>Intro to Programming</span>
+                <span>BSIT 1-A</span>
+                <span>07:32 AM</span>
+                <span class="status-pill green">On Time</span>
+                <span>32</span>
+                <span>2</span>
+                <span>1</span>
+                <button class="mini-btn" data-action="view-report">View</button>
+              </div>
+              <div class="table-row">
+                <span>Mar 4, 2025</span>
+                <span>Web Development</span>
+                <span>BSIT 3-A</span>
+                <span>10:08 AM</span>
+                <span class="status-pill yellow">Late</span>
+                <span>36</span>
+                <span>1</span>
+                <span>1</span>
+                <button class="mini-btn" data-action="view-report">View</button>
+              </div>
+              <div class="table-row">
+                <span>Mar 3, 2025</span>
+                <span>Data Structures</span>
+                <span>BSIT 2-B</span>
+                <span>01:00 PM</span>
+                <span class="status-pill green">On Time</span>
+                <span>30</span>
+                <span>4</span>
+                <span>1</span>
+                <button class="mini-btn" data-action="view-report">View</button>
+              </div>
+              <div class="table-row">
+                <span>Feb 28, 2025</span>
+                <span>Database Management</span>
+                <span>BSIT 2-A</span>
+                <span>03:15 PM</span>
+                <span class="status-pill yellow">Late</span>
+                <span>39</span>
+                <span>1</span>
+                <span>0</span>
+                <button class="mini-btn" data-action="view-report">View</button>
+              </div>
+              <div class="table-row">
+                <span>Feb 27, 2025</span>
+                <span>Intro to Programming</span>
+                <span>BSIT 1-A</span>
+                <span>07:30 AM</span>
+                <span class="status-pill green">On Time</span>
+                <span>35</span>
+                <span>0</span>
+                <span>0</span>
+                <button class="mini-btn" data-action="view-report">View</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="legend">
+            <span><span class="dot green"></span>On Time</span>
+            <span><span class="dot yellow"></span>Late</span>
+            <span><span class="dot red"></span>Missed / No record</span>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="student.js"></script>
+  </body>
+</html>
