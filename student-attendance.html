@@ -1,86 +1,90 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Class Sync - Student Attendance</title>
-    <link rel="stylesheet" href="student.css" />
-  </head>
-  <body class="student-app" data-page="attendance">
-    <div class="student-topbar">
-      <div class="brand-mini">
-        <span class="brand-mark">S</span>
-        <span class="brand-text">Class Sync</span>
-      </div>
-      <div class="top-user">
-        <span>Juan Dizon</span>
-        <span class="avatar-icon">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="12" cy="8" r="4"></circle>
-            <path d="M4 21c1.8-3.8 5-6 8-6s6.2 2.2 8 6" fill="none" stroke="currentColor" stroke-width="2"></path>
-          </svg>
-        </span>
-      </div>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Class Sync - Student Attendance</title>
+  <link rel="stylesheet" href="student.css" />
+</head>
+
+<body class="student-app" data-page="attendance">
+  <div class="student-topbar">
+    <div class="brand-mini">
+      <span class="brand-mark">S</span>
+      <span class="brand-text">Class Sync</span>
     </div>
+    <div class="top-user">
+      <span>Juan Dizon</span>
+      <span class="avatar-icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="8" r="4"></circle>
+          <path d="M4 21c1.8-3.8 5-6 8-6s6.2 2.2 8 6" fill="none" stroke="currentColor" stroke-width="2"></path>
+        </svg>
+      </span>
+    </div>
+  </div>
 
-    <div class="student-layout">
-      <aside class="student-sidebar">
-        <div class="sidebar-head">
-          <div class="brand-stack">
-            <span class="brand-mark">S</span>
-            <span class="brand-text">Class Sync</span>
-          </div>
-          <span class="student-name">Juan Dizon</span>
+  <div class="student-layout">
+    <aside class="student-sidebar">
+      <div class="sidebar-head">
+        <div class="brand-stack">
+          <span class="brand-mark">S</span>
+          <span class="brand-text">Class Sync</span>
         </div>
-        <nav class="student-nav">
-          <a class="nav-item" href="student-dashboard.html" data-target="dashboard">
-            <span class="nav-icon box"></span>
-            Dashboard
-          </a>
-          <a class="nav-item" href="student-schedules.html" data-target="schedules">
-            <span class="nav-icon circle"></span>
-            Schedules
-          </a>
-          <a class="nav-item" href="student-attendance.html" data-target="attendance">
-            <span class="nav-icon ring"></span>
-            Attendance
-          </a>
-          <a class="nav-item" href="student-reports.html" data-target="reports">
-            <span class="nav-icon clip"></span>
-            Reports
-          </a>
-        </nav>
-        <div class="sidebar-foot">
-          <button class="text-btn" data-action="logout">Log out</button>
-          <button class="icon-btn" aria-label="Settings" data-action="settings">Settings</button>
-        </div>
-      </aside>
+        <span class="student-name">Juan Dizon</span>
+      </div>
+      <nav class="student-nav">
+        <a class="nav-item" href="student-dashboard.html" data-target="dashboard">
+          <span class="nav-icon box"></span>
+          Dashboard
+        </a>
+        <a class="nav-item" href="student-schedules.html" data-target="schedules">
+          <span class="nav-icon circle"></span>
+          Schedules
+        </a>
+        <a class="nav-item" href="student-attendance.html" data-target="attendance">
+          <span class="nav-icon ring"></span>
+          Attendance
+        </a>
+        <a class="nav-item" href="student-reports.html" data-target="reports">
+          <span class="nav-icon clip"></span>
+          Reports
+        </a>
+      </nav>
+      <div class="sidebar-foot">
+        <button class="text-btn" data-action="logout">Log out</button>
+        <button class="icon-btn" aria-label="Settings" data-action="settings">Settings</button>
+      </div>
+    </aside>
 
-      <main class="student-main">
-        <section class="student-header">
-          <h1>Record Attendance</h1>
-          <p>Record student attendance for today's class.</p>
-        </section>
+    <main class="student-main">
+      <section class="student-header">
+        <h1>Record Attendance</h1>
+        <p>Record student attendance for today's class.</p>
+      </section>
 
-        <section class="student-surface">
-          <div class="toolbar">
-            <div class="search">
-              <span class="search-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24">
-                  <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"></circle>
-                  <path d="M20 20l-4-4" fill="none" stroke="currentColor" stroke-width="2"></path>
-                </svg>
-              </span>
-              <input type="text" placeholder="Search your schedule..." />
-            </div>
-            <select class="dropdown">
-              <option>Intro to Programming - BSIT 1-A</option>
-              <option>Data Structures - BSIT 2-B</option>
-              <option>Web Development - BSIT 3-A</option>
-            </select>
-            <button class="filter-btn" data-action="filter-attendance">Filter</button>
+      <section class="student-surface">
+        <div class="toolbar">
+          <div class="search">
+            <span class="search-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"></circle>
+                <path d="M20 20l-4-4" fill="none" stroke="currentColor" stroke-width="2"></path>
+              </svg>
+            </span>
+            <input type="text" placeholder="Search your schedule..." />
           </div>
+          <select class="dropdown" id="section-select">
+            <option value="">-- Select Section --</option>
+            <option>Intro to Programming - BSIT 1-A</option>
+            <option>Data Structures - BSIT 2-B</option>
+            <option>Web Development - BSIT 3-A</option>
+          </select>
+          <button class="filter-btn" data-action="filter-attendance">Filter</button>
+        </div>
 
+        <div id="attendance-content" class="hidden" style="display: none;">
           <div class="time-card">
             <div>
               <p>Current Time</p>
@@ -95,9 +99,22 @@
           </div>
 
           <div class="action-row align-right">
-            <button class="action-btn slate" data-action="all-present">All Present</button>
-            <button class="action-btn yellow" data-action="all-late">All Late</button>
-            <button class="action-btn red" data-action="all-absent">All Absent</button>
+            <div class="bulk-status-radios">
+              <span>Set All To:</span>
+              <label class="status-radio-label" data-action="all-status">
+                <input type="radio" name="bulk-status" value="present" />
+                Present
+              </label>
+              <label class="status-radio-label" data-action="all-status">
+                <input type="radio" name="bulk-status" value="late" />
+                Late
+              </label>
+              <label class="status-radio-label" data-action="all-status">
+                <input type="radio" name="bulk-status" value="absent" />
+                Absent
+              </label>
+            </div>
+            <div class="divider"></div>
             <button class="action-btn ghost" data-action="cancel-attendance">Cancel</button>
             <button class="action-btn primary" data-action="save-attendance">Saved Attendance Record</button>
           </div>
@@ -111,6 +128,7 @@
                 <span>Student ID</span>
                 <span>Status</span>
               </div>
+              <!-- ... table rows ... -->
               <div class="table-row">
                 <span>1</span>
                 <span>Maria Abad</span>
@@ -193,10 +211,12 @@
               </div>
             </div>
           </div>
-        </section>
-      </main>
-    </div>
+        </div>
+      </section>
+    </main>
+  </div>
 
-    <script src="student.js"></script>
-  </body>
+  <script src="student.js"></script>
+</body>
+
 </html>
