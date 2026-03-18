@@ -85,8 +85,8 @@ document.addEventListener("click", (event) => {
     const status = statusBtn.classList.contains("present")
       ? "present"
       : statusBtn.classList.contains("late")
-      ? "late"
-      : "absent";
+        ? "late"
+        : "absent";
     setRowStatus(row, status);
   }
 
@@ -103,20 +103,37 @@ document.addEventListener("click", (event) => {
       break;
     case "filter-schedule":
     case "filter-attendance":
+      const select = document.getElementById("section-select");
+      const content = document.getElementById("attendance-content");
+      if (select && content) {
+        if (select.value !== "") {
+          content.style.display = "block";
+          content.classList.remove("hidden");
+        } else {
+          showToast("Please select a section first.", "error");
+        }
+      }
+      break;
     case "filter-reports":
       openModal("Filter", "Filter options are mocked in this static layout.");
       break;
+    case "all-status":
+      let radioInput = actionBtn;
+      if (radioInput.tagName !== "INPUT") {
+        radioInput = actionBtn.querySelector('input[type="radio"]');
+      }
+      if (radioInput && radioInput.value) {
+        const val = radioInput.value;
+        document.querySelectorAll(".table-row").forEach((row) => setRowStatus(row, val));
+        showToast(`All students marked ${val.charAt(0).toUpperCase() + val.slice(1)}.`, "success");
+        // Ensure the radio button is checked if it was triggered via label click in a way that didn't automatically check it
+        radioInput.checked = true;
+      }
+      break;
     case "all-present":
-      document.querySelectorAll(".table-row").forEach((row) => setRowStatus(row, "present"));
-      showToast("All students marked Present.", "success");
-      break;
     case "all-late":
-      document.querySelectorAll(".table-row").forEach((row) => setRowStatus(row, "late"));
-      showToast("All students marked Late.", "success");
-      break;
     case "all-absent":
-      document.querySelectorAll(".table-row").forEach((row) => setRowStatus(row, "absent"));
-      showToast("All students marked Absent.", "success");
+      // Replaced by all-status radio button
       break;
     case "cancel-attendance":
       openModal("Attendance Cancelled", "No changes were saved (mock).");

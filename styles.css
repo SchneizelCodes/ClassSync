@@ -334,20 +334,51 @@ input {
 }
 
 .hero-card {
-  background: rgba(221, 234, 255, 0.92);
-  padding: 18px 22px;
-  border-radius: 18px;
-  box-shadow: var(--soft-shadow);
+  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+  padding: 32px 36px;
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  animation: slideInLeft 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-card::before {
+  content: "";
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 200px;
+  height: 200px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
 }
 
 .hero-card h1 {
   margin: 0;
-  font-size: 1.6rem;
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .hero-card p {
-  margin: 4px 0 0;
-  color: var(--muted);
+  margin: 8px 0 0;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 500;
+  font-size: 1.05rem;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .stats {
