@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Class Sync - User Dashboard</title>
+  <link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body data-page="user-dashboard">
+  <div class="dashboard-shell">
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <img src="image.png" alt="Class Sync logo">
+        <span>Class<br>Sync</span>
+      </div>
+
+      <div class="profile-card">
+        <h1>Class Sync</h1>
+        <div class="divider"></div>
+        <p data-admin-name>Juan Dizon</p>
+        <div class="divider"></div>
+      </div>
+
+      <nav class="nav" aria-label="User navigation">
+        <button class="nav-item active" type="button" data-user-view="dashboard">
+          <svg viewBox="0 0 22 22" fill="currentColor" aria-hidden="true">
+            <rect x="1" y="1" width="9" height="9" rx="1.5"></rect>
+            <rect x="12" y="1" width="9" height="9" rx="1.5"></rect>
+            <rect x="1" y="12" width="9" height="9" rx="1.5"></rect>
+            <rect x="12" y="12" width="9" height="9" rx="1.5"></rect>
+          </svg>
+          Dashboard
+        </button>
+        <a class="nav-item" href="UserSchedules.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"></circle>
+            <path d="M12 7v5l3 3"></path>
+          </svg>
+          Schedules
+        </a>
+        <a class="nav-item" href="UserAttendance.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+            <path d="M16 2v4"></path>
+            <path d="M8 2v4"></path>
+            <path d="M3 10h18"></path>
+          </svg>
+          Attendance
+        </a>
+        <a class="nav-item" href="UserReports.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <path d="M14 2v6h6"></path>
+          </svg>
+          Reports
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="divider"></div>
+        <div class="sidebar-footer-row">
+          <button class="sidebar-link" type="button" data-logout>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M10 17l5-5-5-5"></path>
+              <path d="M15 12H3"></path>
+              <path d="M21 3v18"></path>
+            </svg>
+            Log out
+          </button>
+          <button class="sidebar-icon-btn" type="button" data-open-user-settings aria-label="Settings">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M19.14 12.94a7.43 7.43 0 0 0 .05-.94 7.43 7.43 0 0 0-.05-.94l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.6-.22l-2.39.96a7.28 7.28 0 0 0-1.63-.94l-.36-2.54a.5.5 0 0 0-.5-.42h-3.84a.5.5 0 0 0-.5.42l-.36 2.54c-.58.22-1.12.53-1.63.94l-2.39-.96a.5.5 0 0 0-.6.22L2.7 8.84a.5.5 0 0 0 .12.64l2.03 1.58a7.43 7.43 0 0 0-.05.94c0 .32.02.63.05.94L2.82 14.52a.5.5 0 0 0-.12.64l1.92 3.32a.5.5 0 0 0 .6.22l2.39-.96c.5.41 1.05.72 1.63.94l.36 2.54a.5.5 0 0 0 .5.42h3.84a.5.5 0 0 0 .5-.42l.36-2.54c.58-.22 1.12-.53 1.63-.94l2.39.96a.5.5 0 0 0 .6-.22l1.92-3.32a.5.5 0 0 0-.12-.64zM12 15.5A3.5 3.5 0 1 1 12 8a3.5 3.5 0 0 1 0 7.5z"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <main class="dashboard-main">
+      <div class="topbar">
+        <span class="topbar-user">
+          <span data-admin-name>Juan Dizon</span>
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </span>
+      </div>
+
+      <div class="stage">
+        <div class="stage-shell">
+          <div class="stage-panel">
+            <section class="dashboard-view active" data-dashboard-view="dashboard">
+              <div class="hero-card">
+                <h2>Welcome, Juan Dizon!</h2>
+                <p>Welcome to Class Sync!</p>
+              </div>
+
+              <section class="stats-grid" aria-label="Summary cards">
+                <article class="stat-card">
+                  <h3>Total Subjects</h3>
+                  <div class="stat-value">04</div>
+                  <div class="stat-foot">This semester</div>
+                </article>
+                <article class="stat-card">
+                  <h3>Classes Today</h3>
+                  <div class="stat-value">02</div>
+                  <div class="stat-foot">Scheduled</div>
+                </article>
+                <article class="stat-card">
+                  <h3>Attendance Rate</h3>
+                  <div class="stat-value">92%</div>
+                  <div class="stat-foot">This month</div>
+                </article>
+                <article class="stat-card">
+                  <h3>Total Students</h3>
+                  <div class="stat-value">148</div>
+                  <div class="stat-foot">All sections</div>
+                </article>
+              </section>
+
+              <section class="surface-card">
+                <div class="surface-title">Today's Classes - <span data-today-long>Loading...</span></div>
+                <div class="table-wrap">
+                  <table class="data-table">
+                    <thead>
+                      <tr>
+                        <th style="width:22%;">Subject</th>
+                        <th style="width:16%;">Section</th>
+                        <th style="width:14%;">Room</th>
+                        <th style="width:16%;">Time</th>
+                        <th style="width:14%;">Status</th>
+                        <th style="width:18%;">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Intro to Programming</td>
+                        <td>BSIT 1-A</td>
+                        <td>Room 201</td>
+                        <td>07:30 - 09:00 AM</td>
+                        <td><span class="status-pill"><span class="dot success"></span>Ongoing</span></td>
+                        <td>
+                          <div class="table-actions">
+                            <button class="btn small warning" type="button" data-user-view="attendance">Record</button>
+                            <button class="btn small ghost" type="button" data-user-view="reports">View</button>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Data Structures &amp; Algorithms</td>
+                        <td>BSIT 2-B</td>
+                        <td>Room 305</td>
+                        <td>01:00 - 02:30 PM</td>
+                        <td><span class="status-pill"><span class="dot warning"></span>Upcoming</span></td>
+                        <td>
+                          <div class="table-actions">
+                            <button class="btn small warning" type="button" data-user-view="attendance">Record</button>
+                            <button class="btn small ghost" type="button" data-user-view="reports">View</button>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <div class="legend">
+                <span class="legend-item"><span class="dot success"></span>Ongoing</span>
+                <span class="legend-item"><span class="dot warning"></span>Upcoming</span>
+                <span class="legend-item"><span class="dot neutral"></span>Completed</span>
+                <span class="legend-item"><span class="dot danger"></span>Missed</span>
+              </div>
+            </section>
+
+
+
+
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" data-record-modal data-backdrop aria-hidden="true">
+    <div class="modal">
+      <h3>Record Details</h3>
+      <p data-record-details>Details will appear here.</p>
+      <div class="modal-actions">
+        <button class="btn secondary" type="button" data-modal-close="[data-record-modal]">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" data-record-form-modal data-backdrop aria-hidden="true">
+    <div class="modal">
+      <h3>New Attendance Record</h3>
+      <form class="stack-form" data-record-form>
+        <div class="field">
+          <label for="recordDate">Date</label>
+          <input id="recordDate" name="recordDate" type="date" required>
+        </div>
+        <div class="field">
+          <label for="recordSubject">Subject</label>
+          <input id="recordSubject" name="recordSubject" type="text" placeholder="Enter subject" required>
+        </div>
+        <div class="field">
+          <label for="recordSection">Section</label>
+          <input id="recordSection" name="recordSection" type="text" placeholder="Enter section" required>
+        </div>
+        <div class="field">
+          <label for="timeIn">Time In</label>
+          <input id="timeIn" name="timeIn" type="text" placeholder="07:30 AM" required>
+        </div>
+        <div class="field">
+          <label for="status">Status</label>
+          <select id="status" name="status">
+            <option>On Time</option>
+            <option>Late</option>
+            <option>Missed</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="present">Present</label>
+          <input id="present" name="present" type="number" min="0" value="0">
+        </div>
+        <div class="field">
+          <label for="absent">Absent</label>
+          <input id="absent" name="absent" type="number" min="0" value="0">
+        </div>
+        <div class="field">
+          <label for="late">Late</label>
+          <input id="late" name="late" type="number" min="0" value="0">
+        </div>
+        <div class="modal-actions">
+          <button class="btn secondary" type="button" data-modal-close="[data-record-form-modal]">Cancel</button>
+          <button class="btn primary" type="submit">Save Record</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

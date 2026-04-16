@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Class Sync - User Schedules</title>
+  <link rel="stylesheet" href="assets/css/app.css">
+  <link rel="stylesheet" href="assets/css/UserSchedules.css">
+</head>
+<body data-page="user-schedules">
+  <div class="dashboard-shell">
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <img src="image.png" alt="Class Sync logo">
+        <span>Class<br>Sync</span>
+      </div>
+
+      <div class="profile-card">
+        <h1>Class Sync</h1>
+        <div class="divider"></div>
+        <p data-admin-name>Juan Dizon</p>
+        <div class="divider"></div>
+      </div>
+
+      <nav class="nav" aria-label="User navigation">
+        <a class="nav-item" href="UserDashboard.html">
+          <svg viewBox="0 0 22 22" fill="currentColor" aria-hidden="true">
+            <rect x="1" y="1" width="9" height="9" rx="1.5"></rect>
+            <rect x="12" y="1" width="9" height="9" rx="1.5"></rect>
+            <rect x="1" y="12" width="9" height="9" rx="1.5"></rect>
+            <rect x="12" y="12" width="9" height="9" rx="1.5"></rect>
+          </svg>
+          Dashboard
+        </a>
+        <a class="nav-item active" href="UserSchedules.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"></circle>
+            <path d="M12 7v5l3 3"></path>
+          </svg>
+          Schedules
+        </a>
+        <a class="nav-item" href="UserAttendance.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+            <path d="M16 2v4"></path>
+            <path d="M8 2v4"></path>
+            <path d="M3 10h18"></path>
+          </svg>
+          Attendance
+        </a>
+        <a class="nav-item" href="UserReports.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <path d="M14 2v6h6"></path>
+          </svg>
+          Reports
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="divider"></div>
+        <div class="sidebar-footer-row">
+          <button class="sidebar-link" type="button" data-logout>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M10 17l5-5-5-5"></path>
+              <path d="M15 12H3"></path>
+              <path d="M21 3v18"></path>
+            </svg>
+            Log out
+          </button>
+          <button class="sidebar-icon-btn" type="button" data-open-user-settings aria-label="Settings">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M19.14 12.94a7.43 7.43 0 0 0 .05-.94 7.43 7.43 0 0 0-.05-.94l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.6-.22l-2.39.96a7.28 7.28 0 0 0-1.63-.94l-.36-2.54a.5.5 0 0 0-.5-.42h-3.84a.5.5 0 0 0-.5.42l-.36 2.54c-.58.22-1.12.53-1.63.94l-2.39-.96a.5.5 0 0 0-.6.22L2.7 8.84a.5.5 0 0 0 .12.64l2.03 1.58a7.43 7.43 0 0 0-.05.94c0 .32.02.63.05.94L2.82 14.52a.5.5 0 0 0-.12.64l1.92 3.32a.5.5 0 0 0 .6.22l2.39-.96c.5.41 1.05.72 1.63.94l.36 2.54a.5.5 0 0 0 .5.42h3.84a.5.5 0 0 0 .5-.42l.36-2.54c.58-.22 1.12-.53 1.63-.94l2.39.96a.5.5 0 0 0 .6-.22l1.92-3.32a.5.5 0 0 0-.12-.64zM12 15.5A3.5 3.5 0 1 1 12 8a3.5 3.5 0 0 1 0 7.5z"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <main class="dashboard-main">
+      <div class="topbar">
+        <span class="topbar-user">
+          <span data-admin-name>Juan Dizon</span>
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </span>
+      </div>
+
+      <div class="stage">
+        <div class="stage-shell">
+          <div class="stage-panel">
+            <div class="hero-card">
+              <h2>Schedules</h2>
+              <p>Search classes, filter by day, and jump to attendance when needed.</p>
+            </div>
+
+            <div class="toolbar">
+              <div class="search-wrap">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <circle cx="11" cy="11" r="7"></circle>
+                  <path d="M20 20l-3.5-3.5"></path>
+                </svg>
+                <input class="search-input" type="search" placeholder="Search your subject, section, room..." data-schedule-search>
+              </div>
+              <div class="quick-actions">
+                <button class="btn secondary" type="button" data-day-filter="All Days">All Days</button>
+                <button class="btn secondary" type="button" data-day-filter="Mon">Mon</button>
+                <button class="btn secondary" type="button" data-day-filter="Tue">Tue</button>
+                <button class="btn secondary" type="button" data-day-filter="Wed">Wed</button>
+                <button class="btn secondary" type="button" data-day-filter="Thu">Thu</button>
+                <button class="btn secondary" type="button" data-day-filter="Fri">Fri</button>
+                <button class="btn secondary" type="button" data-day-filter="Sat">Sat</button>
+              </div>
+            </div>
+
+            <section class="surface-card">
+              <div class="surface-title">All Scheduled Classes - 4 subjects</div>
+              <div class="table-wrap">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Subject</th>
+                      <th>Section</th>
+                      <th>Room</th>
+                      <th>Day/s</th>
+                      <th>Time</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr data-schedule-row data-days="Mon / Wed / Fri">
+                      <td>Intro to Programming</td>
+                      <td>BSIT 1-A</td>
+                      <td>Room 201</td>
+                      <td>Mon / Wed / Fri</td>
+                      <td>07:30 - 09:00 AM</td>
+                      <td><span class="status-pill"><span class="dot success"></span>Today</span></td>
+                    </tr>
+                    <tr data-schedule-row data-days="Mon / Wed">
+                      <td>Data Structures &amp; Algo</td>
+                      <td>BSIT 2-B</td>
+                      <td>Room 305</td>
+                      <td>Mon / Wed</td>
+                      <td>01:00 - 02:30 PM</td>
+                      <td><span class="status-pill"><span class="dot success"></span>Today</span></td>
+                    </tr>
+                    <tr data-schedule-row data-days="Tue / Thu">
+                      <td>Web Development</td>
+                      <td>BSIT 3-A</td>
+                      <td>Lab 102</td>
+                      <td>Tue / Thu</td>
+                      <td>10:00 - 11:30 AM</td>
+                      <td><span class="status-pill"><span class="dot warning"></span>Not Today</span></td>
+                    </tr>
+                    <tr data-schedule-row data-days="Friday / Sat">
+                      <td>Database Management</td>
+                      <td>BSIT 2-A</td>
+                      <td>Room 210</td>
+                      <td>Friday/Sat</td>
+                      <td>03:00 - 05:00 PM</td>
+                      <td><span class="status-pill"><span class="dot warning"></span>Not Today</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <div class="legend">
+              <span class="legend-item"><span class="dot success"></span>Scheduled Today</span>
+              <span class="legend-item"><span class="dot warning"></span>Upcoming Today</span>
+              <span class="legend-item"><span class="dot neutral"></span>Not Scheduled Today</span>
+              <span class="legend-item"><span class="dot danger"></span>Cancelled</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

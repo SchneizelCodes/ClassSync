@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Class Sync - User Login</title>
+  <link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body data-page="user-login">
+  <main class="login-shell">
+    <div class="login-frame">
+      <div class="login-topbar">
+        <a href="UserLogin.html">Class Sync</a>
+      </div>
+
+      <section class="login-hero" aria-label="User login">
+        <div class="login-banner">
+          <h1>Welcome to Class Sync!</h1>
+          <p data-today>Today is loading...</p>
+        </div>
+
+        <div class="login-layout">
+          <div class="brand-panel" aria-hidden="true">
+            <img src="image.png" alt="Class Sync logo">
+          </div>
+
+          <section class="auth-card">
+            <h2>User Login</h2>
+            <p class="auth-copy">Use your student or faculty account to continue to the dashboard.</p>
+
+            <form class="auth-form" data-user-login-form>
+              <div class="field">
+                <label for="userEmail">Email</label>
+                <input id="userEmail" name="email" type="email" autocomplete="username" placeholder="Enter email" required>
+              </div>
+
+              <div class="field">
+                <label for="userPassword">Password</label>
+                <input id="userPassword" name="password" type="password" autocomplete="current-password" placeholder="Enter password" required>
+              </div>
+
+              <p class="field-hint">Password must be at least 8 characters and include uppercase, lowercase, and a number.</p>
+
+              <div class="login-actions">
+                <button class="btn dark" type="submit">Log In</button>
+              </div>
+            </form>
+
+            <div class="helper-links">
+              <button type="button" data-user-forgot>Forgot password?</button>
+              <span> | </span>
+              <a href="AdminLogin.html">Admin login</a>
+            </div>
+          </section>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

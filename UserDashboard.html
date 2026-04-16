@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Class Sync - User Dashboard</title>
+  <style>
+    :root{
+      --page-bg:#eef2f7;
+      --sidebar-bg:#ffffff;
+      --main-bg:#20346b;
+      --surface:#ffffff;
+      --ink:#283347;
+      --muted:#657387;
+      --line:#c6cedb;
+      --blue:#3368e7;
+      --blue-soft:#cfdcf6;
+      --green:#14d99b;
+      --yellow:#f5d96a;
+      --red:#f45462;
+      --gray:#b5bac3;
+      --shadow:0 8px 22px rgba(12, 22, 49, 0.22);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+
+    body{
+      margin:0;
+      font-family:"Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background:var(--page-bg);
+      color:var(--ink);
+    }
+
+    .dashboard{
+      min-height:100vh;
+      display:grid;
+      grid-template-columns:316px 1fr;
+      background:linear-gradient(180deg, #304ea2 0%, #1e335f 100%);
+    }
+
+    .sidebar{
+      background:var(--sidebar-bg);
+      display:flex;
+      flex-direction:column;
+      padding:16px 14px 0;
+      box-shadow:2px 0 18px rgba(31, 43, 78, 0.08);
+      border-bottom-right-radius:24px;
+      position:relative;
+      z-index:2;
+    }
+
+    .brand-mini{
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+      padding-left:4px;
+    }
+
+    .brand-mini img{
+      width:36px;
+      height:36px;
+      object-fit:contain;
+    }
+
+    .brand-mini span{
+      font-size:15px;
+      line-height:1.05;
+      font-weight:600;
+      color:#32415f;
+      margin-top:4px;
+    }
+
+    .profile-card{
+      text-align:center;
+      padding:22px 12px 10px;
+    }
+
+    .profile-card h1{
+      margin:0 0 8px;
+      font-size:32px;
+      font-weight:700;
+    }
+
+    .profile-card p{
+      margin:10px 0;
+      font-size:17px;
+      color:#2e3744;
+    }
+
+    .rule{
+      height:2px;
+      margin:0 18px;
+      background:#31405d;
+      opacity:.45;
+    }
+
+    .nav{
+      padding:28px 0 0;
+      display:flex;
+      flex-direction:column;
+      gap:26px;
+    }
+
+    .nav-item{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      padding:16px 18px;
+      border-radius:12px;
+      color:#273245;
+      text-decoration:none;
+      font-size:26px;
+      font-weight:600;
+    }
+
+    .nav-item.active{
+      background:linear-gradient(90deg, rgba(49,104,232,0.2) 0%, rgba(49,104,232,0.98) 100%);
+      color:#263349;
+    }
+
+    .nav-item svg{
+      flex:none;
+      width:32px;
+      height:32px;
+    }
+
+    .sidebar-bottom{
+      margin-top:auto;
+      padding:0 0 14px;
+    }
+
+    .bottom-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:18px 24px 0;
+    }
+
+    .logout{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      color:#5a687d;
+      text-decoration:none;
+      font-size:18px;
+    }
+
+    .gear{
+      width:38px;
+      height:38px;
+      border:none;
+      background:transparent;
+      color:#5a687d;
+      cursor:pointer;
+    }
+
+    .main{
+      display:flex;
+      flex-direction:column;
+      min-width:0;
+      background:var(--page-bg);
+    }
+
+    .topbar{
+      height:86px;
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+      gap:14px;
+      padding:0 26px;
+      color:#4a586e;
+      font-size:18px;
+      background:#fff;
+    }
+
+    .main-stage{
+      flex:1;
+      margin:0 0 0 0;
+      background:linear-gradient(180deg, #304ea2 0%, #1d2f57 100%);
+      padding:16px 28px 24px;
+      overflow:auto;
+    }
+
+    .stage-card{
+      background:#ffffff;
+      border-bottom-left-radius:24px;
+      border-top-left-radius:0;
+      border-top-right-radius:24px;
+      border-bottom-right-radius:24px;
+      padding:18px 18px 28px;
+      min-height:calc(100vh - 118px);
+      box-shadow:inset 0 0 0 1px rgba(122, 140, 176, 0.14);
+    }
+
+    .hero{
+      background:var(--surface);
+      border-radius:28px;
+      padding:20px 26px 18px;
+      margin-bottom:28px;
+    }
+
+    .hero h2{
+      margin:0;
+      font-size:54px;
+      font-weight:800;
+      color:#263247;
+    }
+
+    .hero p{
+      margin:10px 0 0;
+      font-size:20px;
+      color:#687587;
+    }
+
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0, 1fr));
+      gap:42px;
+      margin:28px 18px 36px;
+    }
+
+    .stat-card{
+      background:var(--blue-soft);
+      border-radius:24px;
+      box-shadow:none;
+      border:1px solid #adc0e3;
+      min-height:156px;
+      padding:22px 18px 18px;
+      color:#4a5b7b;
+    }
+
+    .stat-card h3{
+      margin:0;
+      font-size:28px;
+      font-weight:800;
+    }
+
+    .stat-value{
+      text-align:center;
+      margin-top:26px;
+      font-size:52px;
+      font-weight:800;
+    }
+
+    .stat-foot{
+      margin-top:18px;
+      font-size:18px;
+      font-weight:600;
+      opacity:.88;
+    }
+
+    .classes-card{
+      width:min(100%, 1180px);
+      margin:0 auto;
+      border:1px solid #aeb9cb;
+      border-radius:14px;
+      overflow:hidden;
+      background:#fff;
+    }
+
+    .classes-title{
+      background:#cddaf3;
+      color:#4a5669;
+      padding:18px 24px;
+      font-size:26px;
+      font-weight:800;
+      border-bottom:1px solid #aeb9cb;
+    }
+
+    .classes-table{
+      width:100%;
+      border-collapse:collapse;
+      table-layout:fixed;
+    }
+
+    .classes-table thead th{
+      background:#efefef;
+      color:#0f1114;
+      font-size:26px;
+      font-weight:800;
+      padding:14px 10px;
+      border-right:1px solid #c5ccda;
+    }
+
+    .classes-table thead th:last-child{
+      border-right:none;
+    }
+
+    .classes-table tbody td{
+      color:#546175;
+      font-size:18px;
+      font-weight:600;
+      padding:18px 16px 210px;
+      vertical-align:top;
+      background:#ffffff;
+      border-right:1px solid #d5dbe5;
+    }
+
+    .classes-table tbody td:last-child{
+      border-right:none;
+    }
+
+    .classes-table tbody td.subject{
+      color:#24499f;
+      font-weight:700;
+    }
+
+    .classes-table tbody td.status{
+      padding-right:10px;
+    }
+
+    .status-list{
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+    }
+
+    .status-item{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      color:#657181;
+      font-weight:700;
+    }
+
+    .dot{
+      width:12px;
+      height:12px;
+      border-radius:50%;
+      display:inline-block;
+      flex:none;
+    }
+
+    .dot.green{ background:var(--green); }
+    .dot.yellow{ background:var(--yellow); }
+    .dot.gray{ background:var(--gray); }
+    .dot.red{ background:var(--red); }
+
+    .action-cell{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      align-items:center;
+    }
+
+    .record-btn{
+      min-width:140px;
+      height:32px;
+      border:none;
+      border-radius:2px;
+      background:#79a0fb;
+      color:#ffffff;
+      font-size:18px;
+      font-weight:800;
+      cursor:pointer;
+    }
+
+    .bottom-actions{
+      display:flex;
+      justify-content:flex-end;
+      gap:14px;
+      width:min(100%, 1180px);
+      margin:24px auto 0;
+    }
+
+    .bottom-btn{
+      min-width:210px;
+      height:64px;
+      border-radius:16px;
+      font-size:18px;
+      font-weight:800;
+      cursor:pointer;
+      box-shadow:0 8px 16px rgba(0,0,0,0.24);
+    }
+
+    .bottom-btn.outline{
+      background:#edf4ff;
+      color:#3356a8;
+      border:1px solid #c2cada;
+    }
+
+    .bottom-btn.fill{
+      background:var(--blue);
+      color:#ffffff;
+      border:1px solid #3356a8;
+    }
+
+    .legend{
+      display:flex;
+      gap:120px;
+      width:min(100%, 1180px);
+      margin:18px auto 0;
+      padding:22px 12px 6px;
+      border-top:1px solid #c9d1de;
+    }
+
+    @media (max-width: 1480px){
+      .dashboard{
+        grid-template-columns:260px 1fr;
+      }
+
+      .stats{
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+      }
+
+      .hero h2{
+        font-size:42px;
+      }
+    }
+
+    @media (max-width: 1080px){
+      .dashboard{
+        grid-template-columns:1fr;
+      }
+
+      .sidebar{
+        border-bottom-right-radius:0;
+      }
+
+      .main-stage{
+        padding:18px;
+      }
+
+      .stats{
+        gap:20px;
+        margin-left:0;
+        margin-right:0;
+      }
+    }
+
+    @media (max-width: 760px){
+      .stats{
+        grid-template-columns:1fr;
+      }
+
+      .hero h2{
+        font-size:32px;
+      }
+
+      .classes-table thead th,
+      .classes-table tbody td{
+        font-size:14px;
+        padding-bottom:90px;
+      }
+
+      .bottom-actions{
+        flex-direction:column;
+      }
+
+      .bottom-btn{
+        width:100%;
+      }
+
+      .legend{
+        gap:32px;
+        flex-wrap:wrap;
+        margin-top:44px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard">
+    <aside class="sidebar">
+      <div class="brand-mini">
+        <img src="image.png" alt="Class Sync logo">
+        <span>Class<br>Sync</span>
+      </div>
+
+      <div class="profile-card">
+        <h1>Class Sync</h1>
+        <div class="rule"></div>
+        <p>Juan Dizon</p>
+        <div class="rule"></div>
+      </div>
+
+      <nav class="nav" aria-label="User navigation">
+        <a class="nav-item active" href="#">
+          <svg viewBox="0 0 22 22" fill="none" aria-hidden="true">
+            <rect x="1" y="1" width="9" height="9" rx="1.5" fill="currentColor"></rect>
+            <rect x="12" y="1" width="9" height="9" rx="1.5" fill="currentColor"></rect>
+            <rect x="1" y="12" width="9" height="9" rx="1.5" fill="currentColor"></rect>
+            <rect x="12" y="12" width="9" height="9" rx="1.5" fill="currentColor"></rect>
+          </svg>
+          Dashboard
+        </a>
+        <a class="nav-item" href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"></circle>
+            <path d="M12 7v5l3 3"></path>
+          </svg>
+          Schedules
+        </a>
+        <a class="nav-item" href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+            <path d="M16 2v4"></path>
+            <path d="M8 2v4"></path>
+            <path d="M3 10h18"></path>
+          </svg>
+          Attendance
+        </a>
+        <a class="nav-item" href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <path d="M14 2v6h6"></path>
+          </svg>
+          Reports
+        </a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="rule"></div>
+        <div class="bottom-row">
+          <a class="logout" href="UserLogin.html">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+              <path d="M16 17l5-5-5-5"></path>
+              <path d="M21 12H9"></path>
+            </svg>
+            Log out
+          </a>
+          <button class="gear" type="button" aria-label="Settings">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M19.14 12.94a7.43 7.43 0 0 0 .05-.94 7.43 7.43 0 0 0-.05-.94l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.6-.22l-2.39.96a7.28 7.28 0 0 0-1.63-.94l-.36-2.54a.5.5 0 0 0-.5-.42h-3.84a.5.5 0 0 0-.5.42l-.36 2.54c-.58.22-1.12.53-1.63.94l-2.39-.96a.5.5 0 0 0-.6.22L2.7 8.84a.5.5 0 0 0 .12.64l2.03 1.58a7.43 7.43 0 0 0-.05.94c0 .32.02.63.05.94L2.82 14.52a.5.5 0 0 0-.12.64l1.92 3.32a.5.5 0 0 0 .6.22l2.39-.96c.5.41 1.05.72 1.63.94l.36 2.54a.5.5 0 0 0 .5.42h3.84a.5.5 0 0 0 .5-.42l.36-2.54c.58-.22 1.12-.53 1.63-.94l2.39.96a.5.5 0 0 0 .6-.22l1.92-3.32a.5.5 0 0 0-.12-.64zM12 15.5A3.5 3.5 0 1 1 12 8a3.5 3.5 0 0 1 0 7.5z"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="topbar">
+        <span>Juan Dizon</span>
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+      </div>
+
+      <section class="main-stage">
+        <div class="stage-card">
+          <section class="hero">
+            <h2>Welcome, Juan Dizon!</h2>
+            <p>Welcome to ClassSync!</p>
+          </section>
+
+          <section class="stats">
+            <article class="stat-card">
+              <h3>Total Subjects</h3>
+              <div class="stat-value">04</div>
+              <div class="stat-foot">This Semester</div>
+            </article>
+            <article class="stat-card">
+              <h3>Classes Today</h3>
+              <div class="stat-value">02</div>
+              <div class="stat-foot">Scheduled</div>
+            </article>
+            <article class="stat-card">
+              <h3>Attendance Rate</h3>
+              <div class="stat-value">92%</div>
+              <div class="stat-foot">This month</div>
+            </article>
+            <article class="stat-card">
+              <h3>Total Students</h3>
+              <div class="stat-value">148</div>
+              <div class="stat-foot">All sections</div>
+            </article>
+          </section>
+
+          <section class="classes-card">
+            <div class="classes-title">Today's Classes — <span id="todayLabel">March 5, 2026</span></div>
+            <table class="classes-table">
+              <thead>
+                <tr>
+                  <th style="width:22%;">Subject</th>
+                  <th style="width:17%;">Section</th>
+                  <th style="width:14%;">Room</th>
+                  <th style="width:16%;">Time</th>
+                  <th style="width:14%;">Status</th>
+                  <th style="width:17%;">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="subject">Intro to Programming<br><br>Data Structures &amp; Algo</td>
+                  <td>BSIT 1-A<br><br>BSIT 2-B</td>
+                  <td>Room 201<br><br>Room 305</td>
+                  <td>07:30–09:00 AM<br><br>01:00–02:30 PM</td>
+                  <td class="status">
+                    <div class="status-list">
+                      <div class="status-item"><span class="dot green"></span>Ongoing</div>
+                      <div class="status-item"><span class="dot yellow"></span>Upcoming</div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="action-cell">
+                      <button class="record-btn" type="button">RECORD</button>
+                      <button class="record-btn" type="button">RECORD</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+
+          <div class="bottom-actions">
+            <button class="bottom-btn outline" type="button">View Schedule</button>
+            <button class="bottom-btn fill" type="button">View Attendance</button>
+          </div>
+
+          <div class="legend" aria-hidden="true">
+            <span class="status-item"><span class="dot green"></span>Ongoing</span>
+            <span class="status-item"><span class="dot yellow"></span>Upcoming</span>
+            <span class="status-item"><span class="dot gray"></span>Completed</span>
+            <span class="status-item"><span class="dot red"></span>Missed</span>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    (function setToday() {
+      const el = document.getElementById("todayLabel");
+      const now = new Date();
+      el.textContent = now.toLocaleDateString(undefined, {
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+      });
+    })();
+  </script>
+</body>
+</html>

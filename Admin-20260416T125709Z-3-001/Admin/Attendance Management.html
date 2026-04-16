@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Sync - Attendance Management</title>
+    <style>
+        :root {
+            --bg-deep-blue: #1e3a8a;
+            --header-light-blue: linear-gradient(90deg, #3b82f6 0%, #60a5fa 100%);
+            --sidebar-white: #ffffff;
+            --nav-active-blue: #3b71ca;
+            --table-header-gray: #dbdbdb;
+            --btn-green: #10b981;
+            --btn-red: #ef4444;
+            --border-light: #cbd5e1;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", "Segoe UI", sans-serif;
+        }
+
+        body {
+            display: flex;
+            height: 100vh;
+            background-color: var(--bg-deep-blue);
+            overflow: hidden;
+        }
+
+        .sidebar {
+            width: 220px;
+            background: var(--sidebar-white);
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid #dfe5ef;
+            z-index: 10;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 22px 20px 12px;
+        }
+
+        .logo-section img {
+            width: 54px;
+            height: 54px;
+            object-fit: contain;
+        }
+
+        .admin-sub {
+            font-size: 12px;
+            color: #94a3b8;
+            padding-left: 0;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .nav-menu {
+            list-style: none;
+            flex-grow: 1;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            margin: 4px 12px;
+            color: #64748b;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 8px;
+        }
+
+        .nav-item.active {
+            background-color: var(--nav-active-blue);
+            color: white;
+        }
+
+        .nav-item svg {
+            flex: none;
+        }
+
+        .main-wrapper {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .top-navbar {
+            height: 45px;
+            background: white;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 0 30px;
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        .page-header {
+            background: var(--header-light-blue);
+            padding: 35px 40px;
+            color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .page-header h1 {
+            font-size: 26px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .page-header p {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .workspace {
+            padding: 20px 40px 40px;
+            overflow-y: auto;
+            flex-grow: 1;
+        }
+
+        .toolbar {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .search-box {
+            position: relative;
+            flex-grow: 1;
+            max-width: 600px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 10px 40px;
+            border-radius: 25px;
+            border: 1px solid var(--border-light);
+            outline: none;
+        }
+
+        .btn-dropdown, .btn-filter {
+            background: white;
+            border: 1px solid var(--border-light);
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .btn-add-new {
+            background: white;
+            color: var(--btn-green);
+            border: 1px solid var(--btn-green);
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 13px;
+            margin-bottom: 25px;
+            cursor: pointer;
+        }
+
+        .data-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+        }
+
+        th {
+            background: var(--table-header-gray);
+            text-align: left;
+            padding: 12px;
+            border: 1px solid #ccc;
+            color: #1e293b;
+        }
+
+        td {
+            padding: 12px;
+            border: 1px solid #edf2f7;
+            color: #475569;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .modal {
+            background: white;
+            width: 500px;
+            border-radius: 12px;
+            padding: 30px;
+        }
+
+        .form-group { margin-bottom: 15px; display: flex; flex-direction: column; gap: 5px; }
+        .form-group label { font-size: 14px; font-weight: 800; }
+        .form-group input, .form-group select { padding: 10px; border: 1px solid var(--border-light); border-radius: 6px; }
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="logo-section">
+            <img src="CSlogo.png" alt="Class Sync logo">
+        </div>
+        <div class="admin-sub">Admin Name</div>
+
+        <nav class="nav-menu">
+            <a href="AdminDashboard.html" class="nav-item">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><rect x="1" y="1" width="9" height="9" rx="1.5" fill="currentColor"></rect><rect x="12" y="1" width="9" height="9" rx="1.5" fill="currentColor"></rect><rect x="1" y="12" width="9" height="9" rx="1.5" fill="currentColor"></rect><rect x="12" y="12" width="9" height="9" rx="1.5" fill="currentColor"></rect></svg>
+                Dashboard
+            </a>
+            <a href="intructor management.html" class="nav-item">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"></path><circle cx="9.5" cy="7" r="4"></circle><path d="M20 8v6"></path><path d="M23 11h-6"></path></svg>
+                Instructors
+            </a>
+            <a href="Schedule Managemment.html" class="nav-item">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 3"></path></svg>
+                Schedules
+            </a>
+            <a href="Attendance Management.html" class="nav-item active">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4"></path><path d="M8 2v4"></path><path d="M3 10h18"></path></svg>
+                Attendance
+            </a>
+            <a href="Reports.html" class="nav-item">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg>
+                Reports
+            </a>
+        </nav>
+    </aside>
+
+    <div class="main-wrapper">
+        <header class="top-navbar">Admin Name</header>
+
+        <div class="page-header">
+            <h1>Attendance Management</h1>
+            <p>Manage instructors attendance.</p>
+        </div>
+
+        <div class="workspace">
+            <div class="toolbar">
+                <div class="search-box"><input type="text"></div>
+                <button class="btn-dropdown">Select Section</button>
+                <button class="btn-filter">Filter</button>
+            </div>
+
+            <button class="btn-add-new" id="openModal">+ Add New Attendance</button>
+
+            <div class="data-card">
+                <div class="card-header">
+                    <h2>Attendance Information</h2>
+                    <div style="font-size: 12px; color: #94a3b8; font-weight: 700;">Saturday | February 28, 2027</div>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Time In</th>
+                            <th>Time Out</th>
+                            <th>Day</th>
+                            <th>Subject</th>
+                            <th>Room No.</th>
+                            <th>Instructor</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>8:00AM</td>
+                            <td>6:00PM</td>
+                            <td>Tuesday</td>
+                            <td>IPT101</td>
+                            <td>IK604</td>
+                            <td>Richard Vienna Dela Cruz</td>
+                            <td style="display:flex; gap:5px;">
+                                <button style="background:var(--btn-green); color:white; border:none; padding:5px 8px; border-radius:4px; font-size:10px; cursor:pointer;">VIEW</button>
+                                <button style="background:var(--btn-red); color:white; border:none; padding:5px 8px; border-radius:4px; font-size:10px; cursor:pointer;">DELETE</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="overlay">
+        <div class="modal">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h2>Add Attendance</h2>
+                <button id="closeModal" style="background:none; border:none; font-size:24px; cursor:pointer;">&times;</button>
+            </div>
+            <form>
+                <div class="form-group">
+                    <label>Time In<span>*</span></label>
+                    <select><option>Select Time</option></select>
+                </div>
+                <div class="form-group">
+                    <label>Instructor<span>*</span></label>
+                    <input type="text" placeholder="Enter Name">
+                </div>
+                <div style="display:flex; justify-content: flex-end; gap:10px; margin-top:20px;">
+                    <button type="button" id="cancelBtn" style="padding:10px 20px; border-radius:6px; border:none; cursor:pointer;">Cancel</button>
+                    <button type="button" style="background:var(--bg-deep-blue); color:white; padding:10px 20px; border-radius:6px; border:none; cursor:pointer;">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const overlay = document.getElementById("overlay");
+        const openBtn = document.getElementById("openModal");
+        const closeBtn = document.getElementById("closeModal");
+        const cancelBtn = document.getElementById("cancelBtn");
+
+        openBtn.onclick = () => overlay.style.display = "flex";
+
+        const hideModal = () => overlay.style.display = "none";
+        closeBtn.onclick = hideModal;
+        cancelBtn.onclick = hideModal;
+    </script>
+</body>
+</html>
